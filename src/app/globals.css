@@ -7,11 +7,11 @@
     'Courier New', monospace;
 }
 
-html,
+/* html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-}
+} */
 
 * {
   box-sizing: border-box;
