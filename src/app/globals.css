@@ -93,6 +93,12 @@ section .container-first {
   height: auto;
 }
 
+.values-icon {
+  background-color: #f7fafc;
+  border-radius: 200px;
+  padding: 20px;
+}
+
 .values-item {
   width: 19rem;
   margin-right: 2rem;
@@ -578,12 +584,6 @@ footer .container {
     margin-right: 2rem;
     margin-left: 2rem;
   }
-  .values-icon {
-    background-color: #f7fafc;
-    border-radius: 200px;
-    padding: 20px;
-  }
-
   .team-grid {
     grid-template-columns: repeat(1, minmax(0, 1fr));
     gap: 2rem;
