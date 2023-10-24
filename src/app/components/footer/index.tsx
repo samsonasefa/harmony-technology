@@ -1,3 +1,4 @@
+import Button from '@/components/button/button';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -13,7 +14,7 @@ export default function Footer() {
     },
     {
       id: 'twitter',
-      name: '/twitter.svg',
+      name: '/twitter2.svg',
       url: '#',
     },
     {
@@ -62,96 +63,77 @@ export default function Footer() {
     },
   ];
   return (
-    <div
-      style={{
-        backgroundColor: '#EDF2F7',
-      }}
-    >
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        {usefullFooterLinks.map((footerLinks) => (
-          <div key={footerLinks.id} style={{ display: 'grid' }}>
+    <footer>
+      <div className="container">
+        <div className="footer-grid">
+          {usefullFooterLinks.map((footerLinks) => (
+            <div key={footerLinks.id} className="flex flex-column">
+              <h3 className="text-lg font-semibold uppercase primary-text-color leading-10">
+                {footerLinks.id}
+              </h3>
+              {footerLinks.values?.map((footerLink) => (
+                <Link
+                  key={footerLink.name}
+                  href={footerLink.url}
+                  className="text-base primary-text-color text-decoration-none leading-9"
+                >
+                  {footerLink.name}
+                </Link>
+              ))}
+            </div>
+          ))}
+
+          <div className="col-span-2 flex flex-column justify-between">
             <h3 className="text-lg font-semibold uppercase primary-text-color leading-10">
-              {footerLinks.id}
+              Subscribe to our newsletter
             </h3>
-            {footerLinks.values?.map((footerLink) => (
-              <Link
-                key={footerLink.name}
-                href={footerLink.url}
-                className="text-base primary-text-color text-decoration-none leading-9"
-              >
-                {footerLink.name}
-              </Link>
-            ))}
-          </div>
-        ))}
 
-        <div>
-          <h3 className="text-lg font-semibold uppercase primary-text-color leading-10">
-            Subscribe to our newsletter
-          </h3>
+            <p className="text-base  tertiary-text-color pt-2-5 pb-2-5">
+              We deliver high quality blog posts written by professionals
+              weekly, And we promise no scam.
+            </p>
 
-          <p className="text-base font-normal primary-text-color">
-            We deliver high quality blog posts written by professionals weekly,
-            And we promise no scam.
-          </p>
-
-          <div>
-            <div className="flex rounded-md shadow-sm">
-              <input
-                type="email"
-                name="email"
-                placeholder="Your Email Address"
-                className="py-3 px-4 block w-full border-gray-200 shadow-sm rounded-l-md text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
-              />
-              <button
-                type="button"
-                className="py-3 px-4 inline-flex flex-shrink-0 justify-center items-center gap-2 rounded-r-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-sm"
-              >
-                Button
-              </button>
+            <div>
+              <div className="flex rounded-md shadow-sm">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Your Email Address"
+                  className="py-3 px-4 block w-full border-gray-200 shadow-sm rounded-l-md text-sm bg-input border"
+                />
+                <Button className="group-btn">Subscribe</Button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          paddingTop: '40px',
-          paddingBottom: '60px',
-        }}
-      >
-        <Logo name="Treact Inc." />
+        <div className="footer-divider" />
 
-        <p className="text-sm primary-text-color">
-          © 2018 Treact Inc. All Rights Reserved.
-        </p>
+        <div className="flex justify-between align-center">
+          <Logo className="footer-logo" name="Treact Inc." />
 
-        <div>
-          {socialMediaIcons.map((socialMediaIcon) => (
-            <Link
-              href={socialMediaIcon.url}
-              key={socialMediaIcon.id}
-              style={{
-                backgroundColor: '#1A202C',
-                borderRadius: '20px',
-                marginRight: '5px',
-                marginLeft: '5px',
-                padding: '10px',
-              }}
-            >
-              <Image
-                src={socialMediaIcon.name}
-                alt={socialMediaIcon.id}
-                width="15"
-                height="15"
-              />
-            </Link>
-          ))}
+          <p className="text-sm tertiary-text-color">
+            © 2018 Treact Inc. All Rights Reserved.
+          </p>
+
+          <div className="flex">
+            {socialMediaIcons.map((socialMediaIcon) => (
+              <Link
+                href={socialMediaIcon.url}
+                key={socialMediaIcon.id}
+                className="footer-socialMedia-img"
+              >
+                <Image
+                  src={`/icons/${socialMediaIcon.name}`}
+                  alt={socialMediaIcon.id}
+                  width="15"
+                  height="15"
+                />
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </footer>
   );
 }

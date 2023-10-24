@@ -1,14 +1,14 @@
-import Button from '@/components/button/button';
 import Link from 'next/link';
 import React from 'react';
 
 import Logo from '../logo/Logo';
+import UserProfile from './UserProfile';
 
 export default function Nav() {
   const routes = [
     {
-      id: 'home',
-      name: 'Home',
+      id: 'about',
+      name: 'About',
       to: '#',
     },
     {
@@ -29,70 +29,32 @@ export default function Nav() {
   ];
 
   return (
-    <nav>
-      <Logo name="Treact" />
-      <div
-        style={{
-          width: '40%',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
-        {routes.map((route) => (
-          <Link
-            key={route.id}
-            href={route.to}
-            className="text-base primary-text-color font-medium"
-          >
-            {route.name}
-          </Link>
-        ))}
-
-        <UserProfile />
-      </div>
-    </nav>
-  );
-}
-
-const UserProfile = () => {
-  // if the user is new
-  const landingRoutes = [
-    {
-      id: 'login',
-      name: 'Login',
-      to: '#',
-    },
-    {
-      id: 'signup',
-      name: 'Sign Up',
-      to: '#',
-      active: true,
-    },
-  ];
-
-  return (
-    <>
-      {landingRoutes.map((route) =>
-        route.active ? (
-          <Button key={route.id}>
-            <Link href={route.to} className="text-base text-white font-medium">
+    <header>
+      <nav>
+        <Logo name="Treact" />
+        <div className="nav-link">
+          <div className="nav-mobile">
+            <a href="#" id="nav-toggle">
+              <span></span>
+            </a>
+          </div>
+          {routes.map((route) => (
+            <Link
+              key={route.id}
+              href={route.to}
+              className={`text-base primary-text-color font-medium nav-element ${
+                route?.id === routes?.[routes.length - 1]?.id
+                  ? 'nav-last-right'
+                  : ''
+              } `}
+            >
               {route.name}
             </Link>
-          </Button>
-        ) : (
-          <Link
-            key={route.id}
-            href={route.to}
-            className="text-base primary-text-color font-medium"
-          >
-            {route.name}
-          </Link>
-        )
-      )}
-    </>
-  );
+          ))}
 
-  // if the user is logged in
-  // TODO: show user profile and logged out button
-};
+          <UserProfile />
+        </div>
+      </nav>
+    </header>
+  );
+}
